@@ -1,0 +1,52 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define vctr vector<ll>
+#define vp vector<pair<ll, ll>>
+//a
+int main()
+{
+    ll t;
+    cin >> t;
+    while(t--)
+    {
+        ll i, j, k;
+        ll n, m;
+        cin >> n;
+        vctr a(n);
+        for(i=0; i<n; i++)
+        {
+            cin >> a[i];
+        }
+
+        if(n==1){
+            cout << "-1" << endl;
+            continue;
+        }
+        
+        vctr cum(n);
+        cum[0]=a[0];
+        for(i=1; i<n; i++)
+        {
+            cum[i]=cum[i-1]|a[i];
+        }
+
+        if(cum[n-1]!=cum[n-2]){
+            cout << "-1" << endl;
+            continue;
+        }
+        ll l=-1,r=-1;
+        for(i=0; i<n; i++){
+            if(a[i]==cum[n-1]){
+                if(l==-1)l=i;
+                else r=i;
+            }
+        }
+        
+        r=max(l, r);
+        if(l==-1)
+       
+    }
+
+}
