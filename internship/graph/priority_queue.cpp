@@ -1,0 +1,22 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define vctr vector<ll>
+#define iPair pair<int, int>
+
+int main(){
+priority_queue<iPair, vector<iPair>, greater<iPair> > p;
+    p.push({1,5});
+    p.push({2,7});
+    p.push({3,6});
+    p.push({4,2});
+    p.push({5,4});
+
+    while(!p.empty()){
+        cout << p.top().first << " " << p.top().second << endl;
+        p.pop();
+    }
+
+}

@@ -17,7 +17,6 @@ int f(ll i, ll time){
     if(time<0)return INT_MIN;
     if(i==n)return 0;
 
-
     if(mem[i][time]!=-1)return mem[i][time];
 
     ll x,y;
@@ -25,9 +24,9 @@ int f(ll i, ll time){
     y = f(i+1, time);
 
     mem[i][time]=max(x,y);
-    cout << "i , time " << i <<" " << time << "    " << "x , y : " << x << " " << y << " mx xy "  << max(x, y) << endl;
     return mem[i][time];
 }
+
 int main()
 {
     ll t;
@@ -54,12 +53,15 @@ int main()
 
        ll x = f(0, SUM/2);
        cout << max(x, SUM-x) << endl;
-       //cout << x << endl;
     }
 }
 
 
-
+/*
+    crusial test case :
+    5
+    9 8 7 4 5
+*/
 
 
 
