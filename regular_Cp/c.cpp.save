@@ -1,50 +1,41 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
+#define ll long long
+#define vctr vector<ll>
+#define vp vector<pair<ll, ll>>
 
-int main() {
-    int t = 0;
-    scanf("%d", &t);
-
-    while (t--) {
-        int n = 0;
-        int m = 0;
-        scanf("%d %d", &n, &m);
-
-        vector<vector<int>> s;
-        while (n--) {
-            int k = 0;
-            scanf("%d", &k);
-            ++k;
-            vector<int> stickers;
-            while (k--) {
-                int e = 0;
-                scanf("%d", &e);
-                stickers.push_back(e);
+int main()
+{
+    ll t;
+    cin >> t;
+    while(t--)
+    {
+        ll n, m, i, j, k;
+        vctr a(3);
+        for(i=0; i<3; i++)cin >> a[i];
+        sort(a.begin(), a.end());
+        if(a[0]==a[2]==a[1]){
+            cout << "0" << endl;
+        }else if(a[0]==a[1]){
+            if((a[2]-a[0])%2==0){
+                cout << (a[2]-a[0])/2 << endl;
+            }else{
+                cout << "-1" << endl;
             }
-
-            s.push_back(stickers);
         }
-
-        vector<int> coach(31, 0);
-        for (int i = 1; i <= m; ++i) {
-            int e = 0;
-            scanf("%d", &e);
-            coach[i] = e;
+        else if(a[1]==a[2]){
+            cout << a[2]-a[0] << endl;
         }
-
-        double prizes = 0.0f;
-        for (size_t i = 0; i < s.size(); ++i) {
-            int p = INT_MAX;
-            size_t j = 0;
-            while (j < s[i].size() - 1)
-                p = min(p, coach[s[i][j++]]);
-            cout <<  p << " "  <
-            prizes += (p * s[i][j]);
+        else{
+            ll x,y,z;
+            x=(a[2]-a[1])%2;
+            y=(a[1]-a[0])%2;
+            if(x==0 && y==0){
+                x=(a[2]-a[1])/2;
+               y= (a[2]-x-a[0]-x)/2+x;
+               cout << y << endl;
+            }
+            else cout << "-1" << endl;
         }
-
-        printf("%.0lf\n", prizes);
     }
-
-    return 0;
 }

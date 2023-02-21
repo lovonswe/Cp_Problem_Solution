@@ -18,5 +18,4 @@ priority_queue<iPair, vector<iPair>, greater<iPair> > p;
         cout << p.top().first << " " << p.top().second << endl;
         p.pop();
     }
-
 }

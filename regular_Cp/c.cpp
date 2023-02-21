@@ -1,106 +1,41 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-#define read(type) readInt<type>() // Fast read
 #define ll long long
-#define nL "\n"
-#define pb push_back
-#define mk make_pair
-#define pii pair<int, int>
-#define a first
-#define b second
-#define vi vector<int>
-#define all(x) (x).begin(), (x).end()
-#define umap unordered_map
-#define uset unordered_set
-#define MOD 1000000007
-#define imax INT_MAX
-#define imin INT_MIN
-#define exp 1e9
-#define sz(x) (int((x).size()))
+#define vctr vector<ll>
+#define vp vector<pair<ll, ll>>
 
-vector<int> getDivisors(int n)
+int main()
 {
-    vector<int> res;
-    for (int i=1; i<=sqrt(n); i++)
+    ll t;
+    cin >> t;
+    while(t--)
     {
-        if (n%i == 0)
-        {
-            // If divisors are equal, print only one
-            if (n/i == i)
-                res.pb(i);
-
-            else // Otherwise print both
-                res.pb(i);
-                res.pb(n/i);
+        ll n, m, i, j, k;
+        vctr a(3);
+        for(i=0; i<3; i++)cin >> a[i];
+        sort(a.begin(), a.end());
+        if(a[0]==a[2]==a[1]){
+            cout << "0" << endl;
+        }else if(a[0]==a[1]){
+            if((a[2]-a[0])%2==0){
+                cout << (a[2]-a[0])/2 << endl;
+            }else{
+                cout << "-1" << endl;
+            }
+        }
+        else if(a[1]==a[2]){
+            cout << a[2]-a[0] << endl;
+        }
+        else{
+            ll x,y,z;
+            x=(a[2]-a[1])%2;
+            y=(a[1]-a[0])%2;
+            if(x==0 && y==0){
+                x=(a[2]-a[1])/2;
+               y= (a[2]-x-a[0]-x)/2+x;
+               cout << y << endl;
+            }
+            else cout << "-1" << endl;
         }
     }
-    return res;
-}
-
-void solve() {
-    int n, m; cin >> n >> m;
-    set<int> topics;
-    for(auto i = 2; i <= m; i++) {topics.insert(i);}
-
-    if (m == 1) {cout << 0 << endl;}
-
-    vector<int> stu; for(auto i = 0; i < n; i++) {int d; cin >> d; stu.pb(d);}
-    sort(all(stu));
-
-    int miv = INT_MAX;
-    int mav = INT_MIN;
-
-    for(auto i = 0; i < n; i++) {
-        int prevS = topics.size();
-        for(auto val : getDivisors(stu[i])) {
-            topics.erase(val);
-        }
-        if (prevS > (int)topics.size()) {
-            miv = min(miv, stu[i]);
-            mav = max(mav, stu[i]);
-        }
-    }
-
-    int diff = mav - miv;
-
-    if ((int)topics.size() == 0) {
-        diff = mav-miv;
-    } else {
-        cout << -1 << endl;
-        return;
-    }
-
-    for(auto i = 2; i <= m; i++) {topics.insert(i);}
-
-    sort(all(stu), greater<>());
-
-    miv = INT_MAX;
-    mav = INT_MIN;
-
-    for(auto i = 0; i < n; i++) {
-        int prevS = topics.size();
-        for(auto val : getDivisors(stu[i])) {
-            topics.erase(val);
-        }
-        if (prevS > (int)topics.size()) {
-            miv = min(miv, stu[i]);
-            mav = max(mav, stu[i]);
-        }
-    }
-
-    cout << min(mav - miv, diff) << endl;
-}
-
-
-
-int32_t main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    int t; cin >> t;
-    while (t--) {
-        solve();
-    }
-
-    return 0;
 }

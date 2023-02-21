@@ -1,5 +1,10 @@
 
-#include<>
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define vctr vector<ll>
+#define pai pair<ll, ll>
+#define vp vector<pair<ll, ll>>
 /*
 In general, printf and scanf are faster
 than cin and cout . This is because printf
@@ -13,31 +18,28 @@ which cin and cout are part of.Dec 31, 2022
 
 int main()
 {
+    int n, a, b, k;
+    cin >> n >> a >> b >>k;
+    vector<int> v(n);
+    for(int i=0; i<n; i++)cin >> v[i];
 
-        ll t;
-        cin >> t;
-        while(t--){
-            ll n, i, j, k;
-            cin >> n;
-            ll ans=0;
-            for(i=2; i<=n; i++){
-                ll temp=i, divisor=0;
-                ll rem=n%i, cnt=0;
-                for(j=1; j*j<=i; j++){
-                    if(temp%j==0){
-                            divisor++;
-                            if(j<=rem)cnt++;
-                            if(temp/j!=j){divisor++;if((temp/j)<rem)cnt++;}
-                    }
-                    
-                }
-                divisor--;
-                divisor*=(n/i);
-                divisor+=cnt;
-                ans+=divisor;
-            }
+    for(int i=0; i<n; i++){
+        v[i]=(v[i]%(a+b));
+        if(v[i]==0)v[i]=a+b;
+        if(v[i]%a==0)v[i]=v[i]/a;
+        else {v[i]=v[i]/a; v[i]++;
         }
 
+        v[i]=max((int)0, v[i]-1);
+    }
+
+    sort(v.begin(), v.end());
+    int ans=0;
+    for(int i=0; i<n; i++){
+        if(k-v[i]>=0){ans++;k-=v[i];}
+        else break;
+    }
+    cout << ans << endl;
 }
 
 /*Here's a table containing commonly used types in C programming for quick access.

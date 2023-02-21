@@ -20,23 +20,18 @@ void bfs(ll n)
     while(!q.empty())
     {
         ll p=q.front();
-        cout << "front : " << p << endl;
         q.pop();
         for(ll ii=0; ii<a[p].size(); ii++)
         {
             ll i=a[p][ii];
-            cout << "p : " << p << endl;
-            cout << "i : " << i << "  " << visited[i] << endl;
             if(visited[i]==0)
             {
-                cout << i << " pushed" << endl;
                 q.push(i);
                 parent[i]=p;
                 level[i]=level[p]+1;
                 visited[i]=1;
             }
         }
-        cout << "   size : " << q.size() << endl;
     }
 
     cout << "Distence of node " << n << " from the root node is : " << level[node]  << endl;
