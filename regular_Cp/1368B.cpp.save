@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define vctr vector<ll>
+#define pai pair<ll, ll>
+#define vp vector<pair<ll, ll>>
+
+struct comp
+{
+    bool operator()(const pair<ll, ll> &x, const pair<ll, ll> &y) const
+    {
+        if (x.first == y.first)
+        {
+            return x.first > y.first;
+        }
+
+        return x.first < y.first;
+    }
+};
+
+int main()
+{
+    ll t;
+    cin >>t ;
+    while(t--)
+    {
+        ll n, x, i, j, k;
+        cin >> n >> k;
+        
+        string s;
+        cin >> s;
+        vp cnt;
+        
+        sort(s.begin(), s.end());
+        for(i=0; i>=0; i--){
+            
+        }
+
+    }
+}

@@ -20,35 +20,38 @@ int main()
 
     ll t;
     cin >> t;
+
     while(t--)
     {
-        ll n, i, j, k;
+        ll n, m, i, j, k;
         cin >> n;
-        ll ans=0;
-        for(i=2; i<=n; i++)
-        {
-            ll temp=i, divisor=0;
-            ll rem=n%i, cnt=0;
-            for(j=1; j*j<=i; j++)
-            {
-                if(temp%j==0)
-                {
-                    divisor++;
-                    if(j<=rem)cnt++;
-                    if(temp/j!=j)
-                    {
-                        divisor++;
-                        if((temp/j)<rem)cnt++;
-                    }
-                }
+        vctr a(n);
+        for(int i=0; i<n; i++)cin >> a[i];
 
+        ll fp[n+5], cnt[n+5]={0};
+        for(int i=0; i<(n+5); i++)fp[i]=INT_MAX;
+
+        for(ll i=0; i<n; i++)fp[a[i]]=min(i,fp[a[i]]);
+        ll ans=0, temp=0;
+        for(int i=n-1; i>=0; i--){
+            if(fp[a[i]]==i){
+                temp-=cnt[a[i]];
+                ans=max(temp, ans);
+                a[i]++;
             }
-            divisor--;
-            divisor*=(n/i);
-            divisor+=cnt;
-            ans+=divisor;
+
+            if(fp[a[i]+1]<i){
+                cnt[a[i]+1]++;
+                temp++;
+                ans=max(temp, ans);
+            }
+
+            cout << i << " " << temp << " " << ans << endl;
+
         }
+        cout << endl;
         cout << ans << endl;
+
     }
 
 }
